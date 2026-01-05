@@ -1,0 +1,87 @@
+@extends("layouts.app")
+
+@section("title","Inicio")
+
+@section("style")
+
+@endsection
+
+@section("header","Página de inicio")
+
+@section("breadcrumb")
+
+    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+
+@endsection
+
+@section("content")
+    <h1 class="mb-4">Sistema de Farmacia</h1>
+    <div class="container-fluid">
+        @hasanyrole("admin|pharmacy")
+        <div class="row">
+            <div class="col-lg-3 col-6">
+
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{$new_orders}}</h3>
+                        <p>Pedidos Nuevos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="{{route("orders.index")}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{$total_orders}}</h3>
+                        <p>Total de Pedidos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="{{route("orders.index")}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>$ {{$sumRevenues}}</h3>
+                        <p>Ingresos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="{{route("revenues.index")}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{$clients??'0'}}</h3>
+                        <p>Clientes</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+
+                    <a href="@role('admin') {{route('users.index')}} @else # @endrole" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+        @endhasanyrole
+        <div class="d-flex justify-content-center align-items-center">
+            <img class="animation__shake img-fluid w-25" src="{{asset("dist/img/catch.png")}}" style="z-index:5;">
+        </div>
+
+    </div>
+
+@endsection
+
+@section("script")
+
+@endsection
